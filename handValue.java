@@ -42,6 +42,9 @@ import java.util.Arrays;
 
 		for(int i = Hand.length-1; i >= 1; i--){
 			for(int j = i-1; j >= 0; j--){
+				if((Hand[i].getNum() == 0) || (Hand[j].getNum() == 0)){
+					continue;
+				}
 				 if((Hand[i].getNum() - 1) == (Hand[j].getNum())) {
 					  count++;
 				 }
