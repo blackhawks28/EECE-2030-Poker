@@ -124,7 +124,7 @@ public class Card {
 	public static void sort(Card[] Hand) {
 
 		int hold;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 5; i++) {
 			for (int j = i + 1; j < 5; j++) {
 				if ((Hand[i].getNum() > Hand[j].getNum()) && i != j) {
 					hold = Hand[i].getNum();
@@ -134,14 +134,15 @@ public class Card {
 			}
 		}
 		for (int i = 0; i < 5; i++) {
-			System.out.println(Hand[i]);
+//			System.out.println(Hand[i]);
 		}
 	}
 
 	public static int straight(Card [] Hand){
+
 		int count = 1;
 		int t = 0;
-
+		sort(Hand);
 		for(int i = 4; i >= 1; i--){
 			for(int j = i-1; j >= 0; j--){
 				if((Hand[i].getNum() == 0) || (Hand[j].getNum() == 0)){
@@ -153,6 +154,7 @@ public class Card {
 					}
 				}
 		if (count == 5) {
+//			System.out.println("You have a straight.");
 			return 2500;
 		}
 		return 0;
