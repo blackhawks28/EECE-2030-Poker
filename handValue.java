@@ -1,63 +1,57 @@
 package poker;
 
-import java.util.Arrays;
-
- class handValue{
-	public static Card[] Hand = new Card[7];
-
-	public static int pair(Card[] Hand) {
-		for (int i = 0; i < 6; i++) {
-			for (int j = 1; j < 6; j++) {
-				if (j == i)
-					j++;
-				if (Hand[i].getNum() == Hand[j].getNum()) {
-					return 100;
-
-				}
+public class handValue {
+	public static void bestHand(Card[] Hand) {
+		
+		
+		
+	}
+	public static int test(Card[] Hand) {
+		int val = 0;
+		if (Hand != null)
+			val =  Card.pair(Hand) + Card.flush(Hand) + Card.straight(Hand) + Card.handVals(Hand);
+			if (val == 0) {
+				System.out.println("Invalid or empty input");
+				return val;
 			}
-		}
-	 return 10;
-	}
-
-	public static void sort(Card[] Hand) {
-
-		int hold;
-		for (int i = 0; i < Hand.length; i++) {
-			for (int j = i + 1; j < Hand.length; j++) {
-				if ((Hand[i].getNum() > Hand[j].getNum()) && i != j) {
-					hold = Hand[i].getNum();
-					Hand[i].setNum(Hand[j].getNum());
-					Hand[j].setNum(hold);
-				}
+			if (val > 0  && val < 250) {
+				System.out.println("You merely have card high...");
+				return val;
 			}
+			if (val >= 250  && val < 500) {
+				System.out.println("You have a pair.");
+				return val;
+			}
+			if (val >= 500  && val < 2000) {
+				System.out.println("You have a two pair!");
+				return val;
+			}
+			if (val >= 2000  && val < 2500) {
+				System.out.println("You have a three of a kind!");
+				return val;
+			}
+			
+			if (val >= 2500  && val < 3000) {
+			System.out.println("You have a straight!");
+				return val;
+			}
+			if (val >= 3000   && val < 4000) {
+				System.out.println("You have a flush!");		
+				return val;
+			}
+			if (val >= 4000  && val < 5000) {
+				System.out.println("You have a full house!");
+				return val;
+			}
+			if (val >= 5000  && val < 5500) {
+				System.out.println("You have a four of a kind!");
+				return val;
+			}
+			if (val >= 5500) {
+				System.out.println("You have a straight flush!");
+				return val;
+			}
+			else
+				return 0;
 		}
-		for (int i = 0; i < Hand.length; i++) {
-			System.out.println(Hand[i]);
-		}
-	}
-
-	public static int straight(Card [] Hand){
-		int count = 1;
-		int t = 0;
-
-		for(int i = Hand.length-1; i >= 1; i--){
-			for(int j = i-1; j >= 0; j--){
-				if((Hand[i].getNum() == 0) || (Hand[j].getNum() == 0)){
-					continue;
-				}
-				 if((Hand[i].getNum() - 1) == (Hand[j].getNum())) {
-					  count++;
-				 }
-					}
-				}
-		if (count == 5) {
-//			System.out.println("You have a straight.");
-			return 2500;
-		}
-		return 0;
-	}
- }
-
-
-
-
+}
