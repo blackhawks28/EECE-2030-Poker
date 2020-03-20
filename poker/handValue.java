@@ -16,8 +16,6 @@ public class handValue {
 
 		}
 	
-	//Unfinished code for determining best hand
-	
 	public static int bestHand(Card[] Hand) {
 		
 		int best = 0;

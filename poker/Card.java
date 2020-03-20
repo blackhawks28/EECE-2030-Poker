@@ -143,12 +143,15 @@ public class Card {
 
 		int hold;
 		//Formats Cards into the array least to greatest
-		for (int i = 0; i < 5; i++) {
-			for (int j = i + 1; j < 4; j++) {
-				if ((Hand[i].getNum() > Hand[j].getNum()) && i != j) {
-					hold = Hand[i].getNum();
-					Hand[i].setNum(Hand[j].getNum());
-					Hand[j].setNum(hold);
+		for (int i = 0; i < 7; i++) {
+			for (int j = i + 1; j < 6; j++) 
+			{
+				if (Hand[i] != null && Hand[j] != null) {
+					if ((Hand[i].getNum() > Hand[j].getNum()) && i != j) {
+						hold = Hand[i].getNum();
+						Hand[i].setNum(Hand[j].getNum());
+						Hand[j].setNum(hold);
+					}
 				}
 			}
 		}
@@ -209,6 +212,7 @@ public class Card {
 
 	public static String printHand(Card[] Hand){
 		String s = "";
+		sort(Hand);
 		for(int i=0; i<Hand.length; i++){
 			
 			if(Hand[i] != null) {

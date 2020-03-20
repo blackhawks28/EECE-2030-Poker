@@ -27,8 +27,8 @@ public class pokerDriver {
 			Card[] Flop = new Card[3];
 			Flop = flop();
 			Hand[2] = Flop[0]; Hand[3] = Flop[1]; Hand[4] = Flop[2];
-			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
 			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
 			
 			Hand[5] = turn();
 			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
