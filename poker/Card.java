@@ -162,19 +162,22 @@ public class Card {
 
 		int count = 1;
 		int t = 0;
-		
+		if (Hand[0].getNum() == 1 && (Hand[4].getNum() == 13) ) {
+			count = 2;
+		}
 		//Loops that run through the Card array and increments if conditions are met
-		for(int i = 4; i >= 1; i--){
-			for(int j = i-1; j >= 0; j--){
-				if((Hand[i].getNum() == 0) || (Hand[j].getNum() == 0)){
+		for(int i = 0; i < 4; i++){
+			for(int j = i+1; j < 5; j++){
+				if((Hand[i].getNum() == (Hand[j].getNum()))) {
+					count = 0;
 					continue;
 				}
-				 if((Hand[i].getNum() - 1) == (Hand[j].getNum())) {
+				if((Hand[i].getNum() + 1) == (Hand[j].getNum())) {
 					  count++;
 				 }
-					}
-				}
-		
+			}
+		}
+		System.out.println(count);
 		//Returning value if straight is true
 		if (count == 5) {
 //			System.out.println("You have a straight.");
@@ -217,10 +220,14 @@ public class Card {
 			
 			if(Hand[i] != null) {
 				s+= Hand[i];
-				if(i != Hand.length && Hand[i+1] == null)
+				if(i != Hand.length-1) {
+					if(Hand[i+1] == null) {
 					break;
-				s+= ", ";
+					}
+				s+= " | ";
+				}
 			}
+		
 		}
 		return s;
 	}

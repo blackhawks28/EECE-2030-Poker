@@ -155,13 +155,15 @@ public class handValue {
 						bestHold = test9;
 					}
 				}
+			}
+		}
 			
 	
 	//		System.out.println(Card.printHand(bestHold));
 	
 			
 			//test methods return an int value that can be translated to their respective conditions
-				if (best == 0) {
+				if (best <= 0) {
 					System.out.println("Invalid or empty input");
 					return best;
 				}
@@ -202,8 +204,8 @@ public class handValue {
 					System.out.println("You have a straight flush!");
 					return best;
 				}
-			}
-		}
+			
+		
 		return best;
 	
 	}
