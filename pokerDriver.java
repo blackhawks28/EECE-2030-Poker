@@ -1,67 +1,195 @@
 package poker;
 
+import java.util.Scanner;
 
+//Main Method Class
 public class pokerDriver {
 
+	static Scanner scnr = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		
+		//Driver Program to test objects and methods created in other classes
+		System.out.println("Welcome to the Poker Hand Reader! \nTo use this program follow the prompts showm. "
+				+ "\nCards are inputted as follows, \"kh\" for King of Hearts, \"10s\" for 10 of spades, \"ad\" For Ace of Diamonds,"
+				+ " and so on. \nType \"fold\" at any time to restart the hand or \"Close\" to stop the program. Enjoy!");
+		poker();
+	}
 		
-		Card[] highC = new Card[5];
-		highC[0] = new Card(3,4);
-		highC[1] = new Card(5,1);
-		highC[2] = new Card(4,0);
-		highC[3] = new Card(8,1);
-		highC[4] = new Card(9,1);
-		System.out.println("Your hand has a value of: " + handValue.test(highC));
+	public static void poker() {
 		
-		Card[] pair = new Card[5];
-		pair[0] = new Card(1,4);
-		pair[1] = new Card(3,1);
-		pair[2] = new Card(4,4);
-		pair[3] = new Card(4,1);
-		pair[4] = new Card(2,1);
-		System.out.println("Your hand has a value of: " + handValue.test(pair));
+			System.out.println();
+			Card[] Hand = new Card[7];
 		
-		Card[] tpair = new Card[5];
-		tpair[0] = new Card(12,4);
-		tpair[1] = new Card(12,1);
-		tpair[2] = new Card(3,2);
-		tpair[3] = new Card(4,1);
-		tpair[4] = new Card(4,1);
-		System.out.println("Your hand has a value of: " + handValue.test(tpair));
+			Hand = pre();
+			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			
+			Card[] Flop = new Card[3];
+			Flop = flop();
+			Hand[2] = Flop[0]; 
+			Hand[3] = Flop[1]; 
+			Hand[4] = Flop[2];
+			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			
+			Hand[5] = turn();
+			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			
+			Hand[6] = river();
+			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			
+			System.out.println();
+			poker();
+	}
+	
+	public static int inputCheck(String input) {
 		
-		Card[] tkind = new Card[5];
-		tkind[0] = new Card(4,4);
-		tkind[1] = new Card(1,1);
-		tkind[2] = new Card(3,3);
-		tkind[3] = new Card(4,1);
-		tkind[4] = new Card(4,1);
-		System.out.println("Your hand has a value of: " + handValue.test(tkind));
+		int n = 0;
 		
-		Card[] str = new Card[7];
-		str[0] = new Card(1,4);
-		str[1] = new Card(2,1);
-		str[2] = new Card(3,2);
-		str[3] = new Card(4,1);
-		str[4] = new Card(5,1);
-		System.out.println("Your hand has a value of: " + handValue.test(str));
+		if (input.compareTo("a") == 0)
+			n = 1;
+		if (input.compareTo("2") == 0)
+			n = 2;
+		if (input.compareTo("3") == 0)
+			n = 3;
+		if (input.compareTo("4") == 0)
+			n = 4;
+		if (input.compareTo("5") == 0)
+			n = 5;
+		if (input.compareTo("6") == 0)
+			n = 6;
+		if (input.compareTo("7") == 0)
+			n = 7;
+		if (input.compareTo("8") == 0)
+			n = 8;
+		if (input.compareTo("9") == 0)
+			n = 9;
+		if (input.compareTo("10") == 0)
+			n = 10;
+		if (input.compareTo("j") == 0)
+			n = 11;
+		if (input.compareTo("q") == 0)
+			n = 12;
+		if (input.compareTo("k") == 0)
+			n = 13;
 		
-		System.out.println();
+
+		if(input.equals("fold")) {
+			System.out.println("You've decided to fold.");
+			poker();
+		}	
+		else if (input.equals("close") ||input.equals("Close")) {
+			System.out.println("You've decided to close the program.");
+			System.exit(0);
+		}		
+		else if (n ==0) {
+			System.out.println("Invalid Card Entered... Restarting");
+			poker();
+		}
+			
+		return n;
+	}		
+	public static int inputCheck2(String input2) {
+		int s = 0;
+		if (input2.compareTo("c") == 0)
+			s = 1;
+		if (input2.compareTo("d") == 0)
+			s = 2;
+		if (input2.compareTo("h") == 0)
+			s = 3;
+		if (input2.compareTo("s") == 0)
+			s = 4;
 		
-		Card[] fhouse = new Card[5];
-		fhouse[0] = new Card(4,4);
-		fhouse[1] = new Card(3,1);
-		fhouse[2] = new Card(3,2);
-		fhouse[3] = new Card(4,1);
-		fhouse[4] = new Card(3,1);
-		System.out.println("Your hand has a value of: " + handValue.test(fhouse));
+		if(input2.equals("fold")) {
+			System.out.println("You've decided to fold.");
+			poker();
+		}			
+		else if(input2.equals("close") ||input2.equals("Close")) {
+			System.out.println("You've decided to close the program.");
+			System.exit(0);
+		}		
+		else if (s == 0) {
+			System.out.println("Invalid Suit Entered... Restarting");
+			poker();
+		}
+		return s;
+	}
+	public static Card cardMaker(int n, int s) {
+		Card thing = new Card(n,s);
+		return thing;
+	}
+	
+	public static Card[] pre() {
 		
-		Card[] stFl = new Card[5];
-		stFl[0] = new Card(5,1);
-		stFl[1] = new Card(6,1);
-		stFl[2] = new Card(8,1);
-		stFl[3] = new Card(7,1);
-		stFl[4] = new Card(9,1);
-		System.out.println("Your hand has a value of: " + handValue.test(stFl));
+		Card[] pre = new Card[7];
+		String input = "";
+		String input2 = "";
+		System.out.println("Enter your dealt hand cards. First the Card number/letter, enter, and then the suit for each card.");
+		
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		pre[0] = cardMaker(inputCheck(input), inputCheck2(input2));
+		
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		pre[1] = cardMaker(inputCheck(input), inputCheck2(input2));
+		
+		
+		return pre;
+	}
+	private static Card[] flop() {
+		
+		Card[] flop = new Card[3];
+		String input = "";
+		String input2 = "";
+		
+		System.out.println("Enter the three flop cards.");
+		
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		flop[0] = cardMaker(inputCheck(input), inputCheck2(input2));
+
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		flop[1] = cardMaker(inputCheck(input), inputCheck2(input2));
+
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		flop[2] = cardMaker(inputCheck(input), inputCheck2(input2));
+		
+		return flop;
+	}
+	private static Card turn() {
+		
+		Card turn = new Card(0,0);
+		String input = "";
+		String input2 = "";
+		
+		System.out.println("Enter the turn card.");
+		
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		turn = cardMaker(inputCheck(input), inputCheck2(input2));
+		
+		return turn;
+			
+	}
+	private static Card river() {
+		
+		Card river = new Card(0,0);
+		String input = "";
+		String input2 = "";
+		
+		System.out.println("Enter the river card.");
+		
+		input = scnr.nextLine();
+		input2 = scnr.nextLine();
+		river = cardMaker(inputCheck(input), inputCheck2(input2));
+		
+		return river;
+			
 	}
 }
+		
