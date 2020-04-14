@@ -19,11 +19,15 @@ public class pokerDriver {
 		
 	public static void poker() {
 			
+		//Recursive method that runs the whole program
+		
 			System.out.println();
 			Card[] Hand = new Card[7];
 		
+		//Calling to method that gathers preflop information
 			Card[] hold = pre();
 			
+		//Using copy constructor that allows the display of the preflop cards
 			Card h0 = new Card(hold[0]);
 			Card h1 = new Card(hold[1]);
 			
@@ -31,43 +35,45 @@ public class pokerDriver {
 			Hand[0] = h0;
 			Hand[1] = h1;
 			
+		//Repeating back what the cards are
 			System.out.println("Your cards are: " + Card.printHand(feature.getUser()));
 			
+		//Starting the flop method 
 			Card[] Flop = new Card[3];
 			Flop = flop();
 			Hand[2] = Flop[0]; 
 			Hand[3] = Flop[1]; 
 			Hand[4] = Flop[2];
 			
+		//Setting flop cards so they can be "universally" accessed
 			feature.setUserNum(handValue.bestHand(Hand));
+			
+		//Calling to method that tells the user what they have
 			handValue.outcome(feature.getUserNum());
 			System.out.println();
-//			System.out.println("You have a hand value of: " + feature.getUserNum());
+			
+		//Repeating back what the cards are
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
+			
+		//Gathering and printing combination stats
 			double percent = (feature.combo()/1326.0)*100;
 			System.out.println("The percent of starting hands that beat yours: " + percent);
-			//
+		
+		//Going to the turn and river methods which do the same thing
 			Hand[5] = turn();
 			feature.setUserNum(handValue.bestHand(Hand));
-//			System.out.println(Card.printHand(feature.getTable()));
 			handValue.outcome(feature.getUserNum());
 			System.out.println();
-//			System.out.println("You have a hand value of: " + feature.getUserNum());
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
-//			System.out.println(Card.printHand(feature.getTable()));
 			percent = (feature.combo()/1326.0)*100;
 			System.out.println("The percent of starting hands that beat yours: " + percent);
-//			System.out.println(Card.printHand(feature.getTable()));
 			Hand[6] = river();
 			feature.setUserNum(handValue.bestHand(Hand));
 			handValue.outcome(feature.getUserNum());
 			System.out.println();
-//			System.out.println("You have a hand value of: " + feature.getUserNum());
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
-//			System.out.println(Card.printHand(feature.getTable()));
 			percent = (feature.combo()/1326.0)*100;
 			System.out.println("The percent of starting hands that beat yours: " + percent);
-//			System.out.println(Card.printHand(feature.getTable()));
 			
 			System.out.println();
 			
@@ -78,7 +84,7 @@ public class pokerDriver {
 			
 			poker();
 	}
-	
+	//Method that takes the users first input and converts it to the format for a Card (ex: 'k' = king)
 	public static int inputCheck(String input) {
 		
 		int n = 0;
@@ -110,7 +116,7 @@ public class pokerDriver {
 		if (input.compareTo("k") == 0)
 			n = 13;
 		
-
+	//Failsafes for incorrect/unique inputs
 		if(input.equals("fold")) {
 			System.out.println("You've decided to fold.");
 			poker();
@@ -126,6 +132,7 @@ public class pokerDriver {
 			
 		return n;
 	}		
+	//Method that takes the users second input and converts it to the format for a Card (ex: 's' = spade)
 	public static int inputCheck2(String input2) {
 		int s = 0;
 		if (input2.compareTo("c") == 0)
@@ -137,6 +144,7 @@ public class pokerDriver {
 		if (input2.compareTo("s") == 0)
 			s = 4;
 		
+	//Failsafes for incorrect/unique inputs
 		if(input2.equals("fold")) {
 			System.out.println("You've decided to fold.");
 			poker();
@@ -151,11 +159,14 @@ public class pokerDriver {
 		}
 		return s;
 	}
+	
+	//Converts inputs to the "Card" datatype
 	public static Card cardMaker(int n, int s) {
 		Card thing = new Card(n,s);
 		return thing;
 	}
 	
+	//Preflop method
 	public static Card[] pre() {
 		
 		Card[] pre = new Card[7];
@@ -174,6 +185,7 @@ public class pokerDriver {
 		feature.setUser(pre);
 		return pre;
 	}
+	//flop method
 	private static Card[] flop() {
 		
 		Card[] flop = new Card[3];
@@ -197,6 +209,7 @@ public class pokerDriver {
 		feature.setFlop(flop);
 		return flop;
 	}
+	//turn method
 	private static Card turn() {
 		
 		Card turn = new Card(0,0);
@@ -213,6 +226,7 @@ public class pokerDriver {
 		return turn;
 			
 	}
+	//river method
 	private static Card river() {
 		
 		Card river = new Card(0,0);

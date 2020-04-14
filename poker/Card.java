@@ -1,11 +1,12 @@
 package poker;
 
-public class Card  implements Cloneable {
+public class Card{
 	
 	//Setting up card class that will be used throughout
 	int number;
 	int suit;
 
+	//Creating unique datatype
 	public Card(int number, int suit) {
 		
 		super();
@@ -13,10 +14,13 @@ public class Card  implements Cloneable {
 		this.suit = suit;
 		
 	}
+	
+	//Copy Constructor
 	public Card(Card c) {
 		this.number = c.number;
 		this.suit = c.suit;
 	}
+	
 	//Setting a null card if necessary
 	public static Card setZero() {
 		Card zero = new Card(0,0);
@@ -46,6 +50,7 @@ public class Card  implements Cloneable {
 	//	System.out.println("Your highest card is a(n) " + high);
 		return sum;
 	}
+	
 	//Getter of number value for Card objects
 	public int getNum() {
 		return number;
@@ -221,10 +226,10 @@ public class Card  implements Cloneable {
 		else
 			return number + " of " + s; 
 	}
-
+	
+	//Method that prints an array of cards
 	public static String printHand(Card[] Hand){
 		String s = "";
-//		sort(Hand);
 		for(int i=0; i<Hand.length; i++){
 			
 			if(Hand[i] != null || Hand[i].getNum() != 0) {

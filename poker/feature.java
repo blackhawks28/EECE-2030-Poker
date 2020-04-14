@@ -8,6 +8,7 @@ public class feature {
 	private static int suit;
 	private static int value;
 	
+	//Creating the 52 deck of cards
 	public static Card[] newDeck() {
 		Card[] deck = new Card[52];
 		int i = 0;
@@ -20,16 +21,21 @@ public class feature {
 		return deck;
 	}
 
+	//Feature that tells you the amount of starting hands that beat your starting hand
 	public static int combo() {
 		int count = 0;
 		int hold  = 0;
 		int total = 0;
 		
 		Card[] d = newDeck();
+		
+		//Nested for loop that goes through every combination of two cards
 		for(int i = 0; i < 51; i++)
 		{
 			for(int j = i + 1; j < 52; j++)
 			{
+			
+			//Creating two new cards to pair with the ones on the table 
 				Card[] test = new Card[7];
 				test[0] = d[i];
 				test[1] = d[j];
@@ -39,24 +45,28 @@ public class feature {
 				test[5] = getTable()[3];
 				test[6] = getTable()[4];
 				
+			//Getting the values of the generated hands
 				hold = handValue.bestHand(test);
 				
+			//Foregoing any repeats of cards with themselves
 				if (test[0] == test[2] || test[0] == test[3] || test[0] == test[4] || test[0] == test[5] || test[0] == test[6] ||test[1] == test[2] || test[1] == test[3] || test[1] == test[4] || test[1] == test[5] || test[1] == test[6] || test[0] == getUser()[0] || test[0] == getUser()[1] ||test[0] == getUser()[0] || test[1] == getUser()[1])	{
 					hold = 0;
 				}
-				
+			//Testing if the generated hands are better than the user's
 				if (hold > getUserNum()) {
 					count++;
 				}
-				if (hold != 0) {
-					total++;
-				}
+//				if (hold != 0) {
+//					total++;
+//				}
 				
 			}
 		}
 		return count;
 		
 	}
+	
+	//Getters, Setters, and Resetters
 	public static void setFlop(Card[] flop) {
 		table[0] = flop[0];
 		table[1] = flop[1];
