@@ -14,10 +14,21 @@ public class pokerDriver {
 				+ "\nCards are inputted as follows, \"kh\" for King of Hearts, \"10s\" for 10 of spades, \"ad\" For Ace of Diamonds,"
 				+ " and so on. \nType \"fold\" at any time to restart the hand or \"Close\" to stop the program. Enjoy!");
 		poker();
+//		Card[] user = new Card[7];
+//		user = pre();
+//		Card[] Flop = new Card[3];
+//		Flop = flop();
+//		user[2] = Flop[0]; 
+//		user[3] = Flop[1]; 
+//		user[4] = Flop[2];
+//		user[5] = turn();
+//		user[6] = river();
+//		
+//		
+//		feature.combo();
 	}
 		
 	public static void poker() {
-		
 			System.out.println();
 			Card[] Hand = new Card[7];
 		
@@ -29,16 +40,27 @@ public class pokerDriver {
 			Hand[2] = Flop[0]; 
 			Hand[3] = Flop[1]; 
 			Hand[4] = Flop[2];
-			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			
+			feature.setUserNum(handValue.bestHand(Hand));
+			handValue.outcome(feature.getUserNum());
+			System.out.println("You have a hand value of: " + feature.getUserNum());
 			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+//			System.out.println("The amount of starting hands that beat yours: " + feature.combo());
 			
 			Hand[5] = turn();
-			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			feature.setUserNum(handValue.bestHand(Hand));
+//			System.out.println(Card.printHand(feature.getTable()));
+			handValue.outcome(feature.getUserNum());
+			System.out.println("You have a hand value of: " + feature.getUserNum());
 			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
-			
+//			System.out.println("The amount of starting hands that beat yours: " + feature.combo());
+//			System.out.println(Card.printHand(feature.getTable()));
 			Hand[6] = river();
-			System.out.println("You have a hand value of: " + handValue.bestHand(Hand));
+			feature.setUserNum(handValue.bestHand(Hand));
+			handValue.outcome(feature.getUserNum());
+			System.out.println("You have a hand value of: " + feature.getUserNum());
 			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			System.out.println("The number of starting hands that beat yours: " + (feature.combo()));
 			
 			System.out.println();
 			poker();
@@ -136,7 +158,7 @@ public class pokerDriver {
 		input2 = scnr.nextLine();
 		pre[1] = cardMaker(inputCheck(input), inputCheck2(input2));
 		
-		
+		feature.setUser(pre);
 		return pre;
 	}
 	private static Card[] flop() {
@@ -159,6 +181,7 @@ public class pokerDriver {
 		input2 = scnr.nextLine();
 		flop[2] = cardMaker(inputCheck(input), inputCheck2(input2));
 		
+		feature.setFlop(flop);
 		return flop;
 	}
 	private static Card turn() {
@@ -173,6 +196,7 @@ public class pokerDriver {
 		input2 = scnr.nextLine();
 		turn = cardMaker(inputCheck(input), inputCheck2(input2));
 		
+		feature.setTurn(turn);
 		return turn;
 			
 	}
@@ -188,6 +212,7 @@ public class pokerDriver {
 		input2 = scnr.nextLine();
 		river = cardMaker(inputCheck(input), inputCheck2(input2));
 		
+		feature.setRiver(river);
 		return river;
 			
 	}
