@@ -199,8 +199,7 @@ public class Card  implements Cloneable {
 	//Method for printing the Card object
 	public String toString(){
 		String s = "Spades";
-		if (suit == 0)
-			s = "no suit";
+		if (suit == 0);
 		if (suit == 1)
 			s = "Clubs";
 		else if (suit == 2)
@@ -210,7 +209,7 @@ public class Card  implements Cloneable {
 		else;
 		
 		if (number == 0)
-			return "Empty Card with " + s;
+			return "";
 		else if (number == 1)
 			return "Ace of " + s;
 		else if (number == 13)
@@ -228,10 +227,10 @@ public class Card  implements Cloneable {
 //		sort(Hand);
 		for(int i=0; i<Hand.length; i++){
 			
-			if(Hand[i] != null) {
+			if(Hand[i] != null || Hand[i].getNum() != 0) {
 				s+= Hand[i];
 				if(i != Hand.length-1) {
-					if(Hand[i+1] == null) {
+					if(Hand[i+1] == null || Hand[i].getNum() == 0) {
 					break;
 					}
 				s+= " | ";

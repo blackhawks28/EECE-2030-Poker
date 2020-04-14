@@ -19,7 +19,7 @@ public class feature {
 		}
 		return deck;
 	}
-	//Ace of Diamonds | 3 of Hearts | 3 of Clubs | 3 of Spades | 4 of Hearts | 7 of Diamonds | Jack of Clubs
+
 	public static int combo() {
 		int count = 0;
 		int hold  = 0;
@@ -30,8 +30,6 @@ public class feature {
 		{
 			for(int j = i + 1; j < 52; j++)
 			{
-			//	System.out.println(Card.printHand(getTable()));
-			//	test = getTable();
 				Card[] test = new Card[7];
 				test[0] = d[i];
 				test[1] = d[j];
@@ -41,29 +39,23 @@ public class feature {
 				test[5] = getTable()[3];
 				test[6] = getTable()[4];
 				
-//				System.out.println(Card.printHand(getTable()));
 				hold = handValue.bestHand(test);
 				
-				if (test[5] == test[0] || test[5] == test[1] || test[5] == test[2] || test[5] == test[3] || test[5] == test[4] || test[6] == test[0] || 
-						test[6] == test[1] || test[6] == test[2] || test[6] == test[3] || 
-						test[6] == test[4] || test[5] == user[0] || test[5] == user[1] ||
-						test[6] == user[0] || test[6] == user[1])
-				{
+				if (test[0] == test[2] || test[0] == test[3] || test[0] == test[4] || test[0] == test[5] || test[0] == test[6] ||test[1] == test[2] || test[1] == test[3] || test[1] == test[4] || test[1] == test[5] || test[1] == test[6] || test[0] == getUser()[0] || test[0] == getUser()[1] ||test[0] == getUser()[0] || test[1] == getUser()[1])	{
 					hold = 0;
 				}
 				
-//				System.out.println(hold);
 				if (hold > getUserNum()) {
 					count++;
 				}
-//				test[0] = d[i];
-//				test[1] = d[j];
-//				System.out.println(test[0] + " | " + test[1]);
-				total++;
+				if (hold != 0) {
+					total++;
+				}
+				
 			}
 		}
-		
 		return count;
+		
 	}
 	public static void setFlop(Card[] flop) {
 		table[0] = flop[0];
@@ -87,7 +79,8 @@ public class feature {
 		table[4] = Card.setZero();
 	}
 	public static void restUser() { 
-		user = null;
+		user[0] = Card.setZero();
+		user[1] = Card.setZero();
 	}
 	public static void setUser(Card[] pre) {
 		user = pre;

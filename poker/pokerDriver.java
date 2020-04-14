@@ -15,48 +15,6 @@ public class pokerDriver {
 				+ " and so on. \nType \"fold\" at any time to restart the hand or \"Close\" to stop the program. Enjoy!");
 		poker();
 	
-//		Card[] test = new Card[7];
-//		test[0] = new Card(7,1);
-//		test[1] = new Card(3,3);
-//		test[2] = new Card(4,2);
-//		Card hold = new Card(test[0]);
-//		Card hold2 = new Card(test[1]);
-//		Card hold3= new Card(test[2]);
-//		Card[] yo = new Card[7];
-//		yo[0] = hold;
-//		yo[1] = hold2;
-//		yo[2] = hold3;
-//		Card.sort(yo);
-//		System.out.println(Card.printHand(yo));
-//		System.out.println(Card.printHand(test));
-		
-//		Card[] hold = pre();
-//		Card[] user = new Card[7];
-//		user[0] = hold[0];
-//		user[1] = hold[1]; 
-//		
-//		Card[] Flop = new Card[3];
-//		Flop = flop();
-//		user[2] = Flop[0]; 
-//		user[3] = Flop[1]; 
-//		user[4] = Flop[2];
-//	
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-//		handValue.bestHand(user);
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-//		
-//		user[5] = turn();
-//		
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-//		handValue.bestHand(user);
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-//		
-//		user[6] = river();
-//	
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-//		handValue.bestHand(user);
-//		System.out.println("The cards inputted are:\n" + Card.printHand(user));
-		//feature.combo();
 	}
 		
 	public static void poker() {
@@ -64,8 +22,16 @@ public class pokerDriver {
 			System.out.println();
 			Card[] Hand = new Card[7];
 		
-			Hand = pre();
-			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			Card[] hold = pre();
+			
+			Card h0 = new Card(hold[0]);
+			Card h1 = new Card(hold[1]);
+			
+			
+			Hand[0] = h0;
+			Hand[1] = h1;
+			
+			System.out.println("Your cards are: " + Card.printHand(feature.getUser()));
 			
 			Card[] Flop = new Card[3];
 			Flop = flop();
@@ -75,26 +41,32 @@ public class pokerDriver {
 			
 			feature.setUserNum(handValue.bestHand(Hand));
 			handValue.outcome(feature.getUserNum());
-			System.out.println("You have a hand value of: " + feature.getUserNum());
-			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
-			System.out.println("The amount of starting hands that beat yours: " + feature.combo());
-			
+			System.out.println();
+//			System.out.println("You have a hand value of: " + feature.getUserNum());
+			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
+			double percent = (feature.combo()/1326.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + percent);
+			//
 			Hand[5] = turn();
 			feature.setUserNum(handValue.bestHand(Hand));
 //			System.out.println(Card.printHand(feature.getTable()));
 			handValue.outcome(feature.getUserNum());
-			System.out.println("You have a hand value of: " + feature.getUserNum());
-			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			System.out.println();
+//			System.out.println("You have a hand value of: " + feature.getUserNum());
+			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
 //			System.out.println(Card.printHand(feature.getTable()));
-			System.out.println("The amount of starting hands that beat yours: " + feature.combo());
+			percent = (feature.combo()/1326.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + percent);
 //			System.out.println(Card.printHand(feature.getTable()));
 			Hand[6] = river();
 			feature.setUserNum(handValue.bestHand(Hand));
 			handValue.outcome(feature.getUserNum());
-			System.out.println("You have a hand value of: " + feature.getUserNum());
-			System.out.println("The cards inputted are:\n" + Card.printHand(Hand));
+			System.out.println();
+//			System.out.println("You have a hand value of: " + feature.getUserNum());
+			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
 //			System.out.println(Card.printHand(feature.getTable()));
-			System.out.println("The number of starting hands that beat yours: " + (feature.combo()));
+			percent = (feature.combo()/1326.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + percent);
 //			System.out.println(Card.printHand(feature.getTable()));
 			
 			System.out.println();
