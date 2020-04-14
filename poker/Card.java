@@ -1,16 +1,21 @@
 package poker;
 
-public class Card {
+public class Card  implements Cloneable {
 	
 	//Setting up card class that will be used throughout
 	int number;
 	int suit;
-	
-	public Card(int number, int suit) {
 
+	public Card(int number, int suit) {
+		
+		super();
 		this.number = number;
 		this.suit = suit;
 		
+	}
+	public Card(Card c) {
+		this.number = c.number;
+		this.suit = c.suit;
 	}
 	//Setting a null card if necessary
 	public static Card setZero() {
@@ -140,17 +145,22 @@ public class Card {
 	
 	//Sorting method for straight check
 	public static void sort(Card[] Hand) {
-
+		
+	
 		int hold;
+		int hold2;
 		//Formats Cards into the array least to greatest
 		for (int i = 0; i < 7; i++) {
-			for (int j = i + 1; j < 6; j++) 
+			for (int j = i + 1; j < 7; j++) 
 			{
 				if (Hand[i] != null && Hand[j] != null) {
 					if ((Hand[i].getNum() > Hand[j].getNum()) && i != j) {
 						hold = Hand[i].getNum();
+						hold2 = Hand[i].getSuit();
 						Hand[i].setNum(Hand[j].getNum());
+						Hand[i].setSuit(Hand[j].getSuit());
 						Hand[j].setNum(hold);
+						Hand[j].setSuit(hold2);
 					}
 				}
 			}
@@ -159,10 +169,10 @@ public class Card {
 
 	//Checking for straight method
 	public static int straight(Card [] Hand){
-
+		
 		int count = 1;
 		int t = 0;
-		if (Hand[0].getNum() == 1 && (Hand[4].getNum() == 13) ) {
+		if (Hand[0].getNum() == 1 && (Hand[4].getNum() == 13) && Hand[1].getNum() != 2 ) {
 			count = 2;
 		}
 		//Loops that run through the Card array and increments if conditions are met
@@ -172,12 +182,12 @@ public class Card {
 					count = 0;
 					continue;
 				}
+				
 				if((Hand[i].getNum() + 1) == (Hand[j].getNum())) {
 					  count++;
 				 }
 			}
 		}
-		System.out.println(count);
 		//Returning value if straight is true
 		if (count == 5) {
 //			System.out.println("You have a straight.");
@@ -215,7 +225,7 @@ public class Card {
 
 	public static String printHand(Card[] Hand){
 		String s = "";
-		sort(Hand);
+//		sort(Hand);
 		for(int i=0; i<Hand.length; i++){
 			
 			if(Hand[i] != null) {
