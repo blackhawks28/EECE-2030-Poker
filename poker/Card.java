@@ -27,6 +27,17 @@ public class Card{
 		return zero;
 	}
 	
+	//For comparing two cards
+	public static boolean compareTo(Card a, Card b) {
+		boolean test = false;
+		if (a!=null && b!= null) {
+			if (a.getNum()==b.getNum()&&a.getSuit()==b.getSuit()) {
+				test = true;
+			}
+		}
+		return test;
+	}
+	
 	//Method to return numerical hand values for tiebreakers
 	public static int handVals(Card[] Hand) {
 		Card high = new Card(0,0);

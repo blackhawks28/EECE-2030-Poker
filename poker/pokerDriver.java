@@ -1,10 +1,15 @@
 package poker;
 
 import java.util.Scanner;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 //Main Method Class
 public class pokerDriver {
 
+	//For formatting decimals
+	private static DecimalFormat df2 = new DecimalFormat("#.##");
+	//For reading user inputs
 	static Scanner scnr = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -56,8 +61,8 @@ public class pokerDriver {
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
 			
 		//Gathering and printing combination stats
-			double percent = (feature.combo()/1326.0)*100;
-			System.out.println("The percent of starting hands that beat yours: " + percent);
+			double percent = (feature.combo()/1093.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + df2.format(percent) + "%");
 		
 		//Going to the turn and river methods which do the same thing
 			Hand[5] = turn();
@@ -65,15 +70,15 @@ public class pokerDriver {
 			handValue.outcome(feature.getUserNum());
 			System.out.println();
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
-			percent = (feature.combo()/1326.0)*100;
-			System.out.println("The percent of starting hands that beat yours: " + percent);
+			percent = (feature.combo()/1047.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + df2.format(percent) + "%");
 			Hand[6] = river();
 			feature.setUserNum(handValue.bestHand(Hand));
 			handValue.outcome(feature.getUserNum());
 			System.out.println();
 			System.out.println("Your cards: " + Card.printHand(feature.getUser()) + "\nTable Cards: " + Card.printHand(feature.getTable()) + "\n");
-			percent = (feature.combo()/1326.0)*100;
-			System.out.println("The percent of starting hands that beat yours: " + percent);
+			percent = (feature.combo()/1001.0)*100;
+			System.out.println("The percent of starting hands that beat yours: " + df2.format(percent) + "%");
 			
 			System.out.println();
 			

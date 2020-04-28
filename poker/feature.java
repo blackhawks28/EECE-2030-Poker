@@ -49,7 +49,9 @@ public class feature {
 				hold = handValue.bestHand(test);
 				
 			//Foregoing any repeats of cards with themselves
-				if (test[0] == test[2] || test[0] == test[3] || test[0] == test[4] || test[0] == test[5] || test[0] == test[6] ||test[1] == test[2] || test[1] == test[3] || test[1] == test[4] || test[1] == test[5] || test[1] == test[6] || test[0] == getUser()[0] || test[0] == getUser()[1] ||test[0] == getUser()[0] || test[1] == getUser()[1])	{
+				if (Card.compareTo(test[0],test[2]) || Card.compareTo(test[0],test[3]) || Card.compareTo(test[0],test[4]) || Card.compareTo(test[0],test[5]) || Card.compareTo(test[0],test[6]) ||
+						Card.compareTo(test[1],test[2]) || Card.compareTo(test[1],test[3]) || Card.compareTo(test[1],test[4]) || Card.compareTo(test[1],test[5]) || Card.compareTo(test[1],test[6])
+						|| Card.compareTo(test[0],getUser()[0]) || Card.compareTo(test[0],getUser()[1]) || Card.compareTo(test[0],getUser()[0]) || Card.compareTo(test[1],getUser()[1]))	{
 					hold = 0;
 				}
 			//Testing if the generated hands are better than the user's
