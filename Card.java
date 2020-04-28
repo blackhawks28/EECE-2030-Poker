@@ -1,21 +1,41 @@
 package poker;
 
-public class Card {
+public class Card{
 	
 	//Setting up card class that will be used throughout
 	int number;
 	int suit;
-	
-	public Card(int number, int suit) {
 
+	//Creating unique datatype
+	public Card(int number, int suit) {
+		
+		super();
 		this.number = number;
 		this.suit = suit;
 		
 	}
+	
+	//Copy Constructor
+	public Card(Card c) {
+		this.number = c.number;
+		this.suit = c.suit;
+	}
+	
 	//Setting a null card if necessary
 	public static Card setZero() {
 		Card zero = new Card(0,0);
 		return zero;
+	}
+	
+	//For comparing two cards
+	public static boolean compareTo(Card a, Card b) {
+		boolean test = false;
+		if (a!=null && b!= null) {
+			if (a.getNum()==b.getNum()&&a.getSuit()==b.getSuit()) {
+				test = true;
+			}
+		}
+		return test;
 	}
 	
 	//Method to return numerical hand values for tiebreakers
@@ -41,6 +61,7 @@ public class Card {
 	//	System.out.println("Your highest card is a(n) " + high);
 		return sum;
 	}
+	
 	//Getter of number value for Card objects
 	public int getNum() {
 		return number;
@@ -140,7 +161,8 @@ public class Card {
 	
 	//Sorting method for straight check
 	public static void sort(Card[] Hand) {
-
+		
+	
 		int hold;
 		int hold2;
 		//Formats Cards into the array least to greatest
@@ -193,8 +215,7 @@ public class Card {
 	//Method for printing the Card object
 	public String toString(){
 		String s = "Spades";
-		if (suit == 0)
-			s = "no suit";
+		if (suit == 0);
 		if (suit == 1)
 			s = "Clubs";
 		else if (suit == 2)
@@ -204,7 +225,7 @@ public class Card {
 		else;
 		
 		if (number == 0)
-			return "Empty Card with " + s;
+			return "";
 		else if (number == 1)
 			return "Ace of " + s;
 		else if (number == 13)
@@ -216,16 +237,16 @@ public class Card {
 		else
 			return number + " of " + s; 
 	}
-
+	
+	//Method that prints an array of cards
 	public static String printHand(Card[] Hand){
 		String s = "";
-//		sort(Hand);
 		for(int i=0; i<Hand.length; i++){
 			
-			if(Hand[i] != null) {
+			if(Hand[i] != null || Hand[i].getNum() != 0) {
 				s+= Hand[i];
 				if(i != Hand.length-1) {
-					if(Hand[i+1] == null) {
+					if(Hand[i+1] == null || Hand[i].getNum() == 0) {
 					break;
 					}
 				s+= " | ";

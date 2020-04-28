@@ -1,5 +1,7 @@
 package poker;
 
+import java.util.Arrays;
+
 public class handValue {
 
 	public static int test(Card[] Hand) {
@@ -15,17 +17,24 @@ public class handValue {
 		return best;
 
 	}
+	//Method that determines the best combination of 5 cards from a group of 7
+	public static int bestHand(final Card[] given) {
 
-	public static int bestHand(Card[] Hand) {
-
+		//Copying given array to another without referencing the same memory
 		int best = 0;
-
-//		System.out.println(Card.printHand(Hand));
+		Card[] Hand = new Card[given.length];
+		for(int i = 0; i < given.length; i++) {
+			if(given[i] != null) {
+				Card hold = new Card(given[i]);
+				Hand[i] = hold;
+			}
+		}
+		//Sorting the copy for tests
 		Card.sort(Hand);
-//		System.out.println(Card.printHand(Hand));
-
+		
 		Card[] bestHold = new Card[5];
 
+		//Hardcoded every combination to attempt to improve efficiency
 		if (Hand[4] != null) {
 			Card[] test0 = new Card[5];
 
@@ -156,9 +165,9 @@ public class handValue {
 
 	}
 
+	// Test methods return an int value that can be translated to their respective conditions which are printed from here
 	public static void outcome(int best) {
-		// test methods return an int value that can be translated to their respective
-		// conditions
+		
 		if (best <= 0) {
 			System.out.println("Invalid or empty input");
 
